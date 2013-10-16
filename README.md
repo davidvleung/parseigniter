@@ -1,4 +1,4 @@
 parseigniter
 ============
 
-Parse library for CodeIgniter
+Parse.com library for CodeIgniter
