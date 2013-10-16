@@ -31,24 +31,50 @@ Installation
 Usage
 -------------
 
-Load the library like how you do with all CodeIgniter libraries:
+First, load the library like how you do with all CodeIgniter libraries:
 
     $this->load->library('Parse');
 
-Then, you are ready to retrieve whatever data you need from Parse.com!
+Then, you are ready to work with Parse.com using any of the following functions!
+
+Note all responses are in JSON format.
+
+<b>Retrieve<b>
 
     $this->parse->getParseObj($objType, $id, $params);
 
-- $objType - simply the name of the Parse class type.
-- $id (optional) - is the ID of the Parse class type.
+- $objType - the name of the Parse class type.
+- $id (optional) - is the Object ID of the Parse class type.
 - $params (optional) - is an array of valid Parse.com REST parameters.
-- The return is a JSON formatted response.
+    
+<b>Update</b>
+
+    $this->parse->updateParseObj($obj, $id, $params);
+
+- $obj - the name of the Parse class type.
+- $id - Object ID of Parse class type
+- $params (optional) - array of class attributes
+
+<b>Create</b>
+
+	$this->parse->newParseObj($obj, $params);
+
+- $obj - the name of the Parse class type.
+- $params (optional) - array of class attributes    
+    
+<b>Upload</b>
+
+    $this->parse->upload($path, $filename, $type);
+
+- $path - path of file
+- $filename - filename of file
+- $type - file extension
 
 Examples
 -----
 
 Retrieve a list of employees that belong to a company in descending created 
-order
+order.  Note that the list of values exist under the "results" name in the JSON response.
 
 	$params = array(
 		"where={\"company_id\": 1}",
@@ -60,5 +86,4 @@ order
 		echo $employee->name . " " . $employee->company_id;
 	}
 
-Note that the list of values exist under the "results" name in the JSON response.
 
